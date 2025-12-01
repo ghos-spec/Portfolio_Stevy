@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+:root {
+  --admin-bg: #040914;
+  --admin-card-bg: #0b1527;
+  --admin-text: #ffffff;
+}
+
+:root.admin-theme-dark {
+  color-scheme: dark;
+  --admin-bg: #040914;
+  --admin-card-bg: #0b1527;
+  --admin-text: #ffffff;
+}
+
+:root.admin-theme-light {
+  color-scheme: light;
+  --admin-bg: #f5f7fb;
+  --admin-card-bg: #ffffff;
+  --admin-text: #04162a;
+}
+
+:root.admin-theme-auto {
+  color-scheme: light dark;
+}
+
+body.admin-layout {
+  background: var(--admin-bg);
+  color: var(--admin-text);
+}
+
+.admin-card {
+  background: var(--admin-card-bg);
+}
+
+:root.admin-compact .admin-card {
+  padding: 1.25rem !important;
+}
+
+:root.admin-compact .admin-card * {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}

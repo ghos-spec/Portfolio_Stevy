@@ -1,16 +1,18 @@
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "firebase/firestore";
-import { db } from "~/plugins/firebase";
-
-const articlesCollection = collection(db, "articles");
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from "firebase/firestore";
 
 export const useArticles = () => {
+  const { $firebase } = useNuxtApp();
+  const db = $firebase.db;
+
+  const articlesCollection = collection(db, "articles");
+
   const getAll = async () => {
     const snapshot = await getDocs(articlesCollection);
     return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   };
 
   const create = async (data: any) => {
-    await addDoc(articlesCollection, data);
+    await addDoc(articlesCollection, { ...data, createdAt: serverTimestamp() });
   };
 
   const update = async (id: string, data: any) => {
