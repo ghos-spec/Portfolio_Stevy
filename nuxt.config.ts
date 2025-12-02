@@ -1,3 +1,30 @@
+const requiredClientEnv = [
+  'FIREBASE_API_KEY',
+  'FIREBASE_AUTH_DOMAIN',
+  'FIREBASE_PROJECT_ID',
+  'FIREBASE_STORAGE_BUCKET',
+  'FIREBASE_MESSAGING_SENDER_ID',
+  'FIREBASE_APP_ID'
+] as const;
+
+const requiredServerEnv = [
+  'FIREBASE_ADMIN_PROJECT_ID',
+  'FIREBASE_ADMIN_CLIENT_EMAIL',
+  'FIREBASE_ADMIN_PRIVATE_KEY',
+  'SUPABASE_URL',
+  'SUPABASE_SERVICE_ROLE_KEY'
+] as const;
+
+const reportMissingEnv = (keys: readonly string[], scope: string) => {
+  const missing = keys.filter((key) => !process.env[key] || process.env[key]?.length === 0);
+  if (missing.length) {
+    console.warn(`⚠️  [nuxt.config] Variables ${scope} manquantes: ${missing.join(', ')}`);
+  }
+};
+
+reportMissingEnv(requiredClientEnv, 'client');
+reportMissingEnv(requiredServerEnv, 'serveur');
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
 

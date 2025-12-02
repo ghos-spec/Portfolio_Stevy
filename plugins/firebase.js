@@ -18,6 +18,8 @@ export default defineNuxtPlugin(async () => {
     measurementId: config.public.firebaseMeasurementId
   };
 
+  const isConfigValid = Object.values(firebaseConfig).every((value) => typeof value === 'string' && value.length > 0);
+
   const fallback = {
     provide: {
       firebase: {
@@ -30,7 +32,10 @@ export default defineNuxtPlugin(async () => {
     }
   };
 
-  if (import.meta.server) {
+  if (import.meta.server || !isConfigValid) {
+    if (!isConfigValid && import.meta.client) {
+      console.warn('[plugins/firebase] Configuration Firebase client incomplète, plugin désactivé');
+    }
     return fallback;
   }
 
