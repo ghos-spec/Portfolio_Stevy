@@ -6,6 +6,11 @@ export default defineNuxtConfig({
   },
 
   css: ['@/assets/css/main.css'],
+  // nuxt.config.ts
+  plugins: [
+    { src: '~/plugins/firebase.js', mode: 'client' }
+  ],
+
 
   postcss: {
     plugins: {
