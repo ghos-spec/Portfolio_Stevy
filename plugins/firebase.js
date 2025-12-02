@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { app } from "firebase-admin";
 
 export default defineNuxtPlugin(() => {
   try {
@@ -21,8 +22,8 @@ export default defineNuxtPlugin(() => {
     };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    const app = null;
+    const auth = getAuth(null);
 
     // Initialize Analytics (only on client side)
     let analytics = null;
