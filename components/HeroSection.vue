@@ -84,7 +84,7 @@
 
         <!-- CTA Buttons -->
         <div class="flex flex-wrap gap-4 hero-animate hero-delay-3">
-          <NuxtLink to="#projects" class="cta-primary group">
+          <NuxtLink to="/projets" class="cta-primary group">
             <span class="cta-bg"></span>
             <span class="cta-shine"></span>
             <span class="relative z-10 flex items-center gap-2">
@@ -92,7 +92,7 @@
               <Icon icon="mdi:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </span>
           </NuxtLink>
-          <NuxtLink to="#contact" class="cta-secondary group">
+          <NuxtLink to="/contact" class="cta-secondary group">
             <span class="cta-border"></span>
             <span class="relative z-10 flex items-center gap-2">
               <Icon icon="mdi:message-outline" class="w-4 h-4" />

@@ -42,23 +42,23 @@
           <span class="text-xs text-white/50">Disponible</span>
         </div>
 
-        <NuxtLink
+        <!-- <NuxtLink
           to="/admin/login"
           class="admin-btn hidden lg:inline-flex"
         >
           <Icon icon="mdi:shield-account" class="w-4 h-4" />
           <span>Admin</span>
-        </NuxtLink>
+        </NuxtLink> -->
 
         <!-- CTA Button -->
-        <button type="button" class="cta-btn group hidden lg:inline-flex">
+        <!-- <button type="button" class="cta-btn group hidden lg:inline-flex">
           <span class="cta-bg"></span>
           <span class="cta-shine"></span>
           <span class="relative z-10 flex items-center gap-2">
             <span>Hire Me</span>
             <Icon icon="mdi:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
           </span>
-        </button>
+        </button> -->
 
         <!-- Mobile Menu Button -->
         <button 
@@ -96,19 +96,26 @@
 
           <div class="my-4 h-px bg-gradient-to-r from-transparent via-[#5EDFFF]/20 to-transparent"></div>
 
-          <NuxtLink
+          <!-- <NuxtLink
             to="/admin/login"
             class="mobile-nav-link"
             @click="toggleMenu(false)"
           >
             <Icon icon="mdi:shield-account" class="w-4 h-4 text-[#5EDFFF]" />
             <span>Accès admin</span>
-          </NuxtLink>
+          </NuxtLink> -->
 
-          <button type="button" class="mobile-cta-btn mt-4">
+          <!-- <NuxtLink
+            to="/contact"
+            class="mobile-cta-btn mt-4"
+            @click="toggleMenu(false)"
+          >
             <span class="cta-bg"></span>
-            <span class="relative z-10">Hire Me</span>
-          </button>
+            <span class="relative z-10 flex items-center gap-2">
+              <Icon icon="mdi:email-send-outline" class="w-5 h-5" />
+              Accéder au formulaire
+            </span>
+          </NuxtLink> -->
         </nav>
       </div>
     </Transition>
@@ -119,11 +126,11 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'Skills', to: '#skills' },
-  { label: 'Projects', to: '#projects' },
-  { label: 'About', to: '#about' },
-  { label: 'Contact', to: '#contact' }
+  { label: 'Accueil', to: '/' },
+  { label: 'Compétences', to: '/competences' },
+  { label: 'Projets', to: '/projets' },
+  { label: 'À propos', to: '/a-propos' },
+  { label: 'Contact', to: '/contact' }
 ];
 
 const isMenuOpen = ref(false);
@@ -134,7 +141,7 @@ const toggleMenu = (value?: boolean) => {
     isMenuOpen.value = value;
     return;
   }
-  isMenuOpen.value = !isMenuOpen.value;
+  isMenuOpen.value = !isMenuOpen.value; 
 };
 
 const handleScroll = () => {
@@ -384,7 +391,7 @@ onBeforeUnmount(() => {
 
 .mobile-menu-btn.is-active .menu-line-3 {
   transform: translateY(0) rotate(-45deg);
-}
+} 
 
 /* Mobile Menu */
 .mobile-menu {

@@ -151,10 +151,10 @@ const particles = Array.from({ length: 15 }, () => ({
 }));
 
 const stats = [
-  { label: 'Projets Livrés', value: '50+', icon: 'mdi:code-braces', detail: 'Apps web & mobile livrées' },
+  { label: 'Projets Livrés', value: '20+', icon: 'mdi:code-braces', detail: 'Apps web & mobile livrées' },
   { label: 'Ans d\'Expérience', value: '3+', icon: 'mdi:briefcase', detail: 'Expertise en développement' },
   { label: 'Lignes de Code', value: '100K+', icon: 'mdi:console', detail: 'Code propre et maintenable' },
-  { label: 'Clients Satisfaits', value: '30+', icon: 'mdi:account-group', detail: 'Collaborations réussies' }
+  { label: 'Clients Satisfaits', value: '10+', icon: 'mdi:account-group', detail: 'Collaborations réussies' }
 ];
 
 const setCardRef = (el: Element | null, index: number) => {

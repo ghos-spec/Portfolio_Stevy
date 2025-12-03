@@ -105,6 +105,14 @@
                 <span class="text-sm">Libreville, Gabon</span>
               </a>
             </li>
+            <li>
+              <a href="#" class="footer-link group">
+                <div class="contact-icon-wrapper">
+                  <Icon icon="mdi:phone-outline" class="w-4 h-4" />
+                </div>
+                <span class="text-sm">+241 060 24 20 22</span>
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -122,14 +130,14 @@
           </div>
 
           <!-- CTA Button -->
-          <a href="#contact" class="cta-button group">
+          <NuxtLink to="/contact" class="cta-button group">
             <span class="cta-bg"></span>
             <span class="relative z-10 flex items-center gap-2">
               <span>Démarrer un projet</span>
               <Icon icon="mdi:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
             <span class="cta-shine"></span>
-          </a>
+          </NuxtLink>
         </div>
       </div>
 
@@ -175,10 +183,11 @@ const particles = Array.from({ length: 20 }, () => ({
 }));
 
 const navLinks = [
-  { name: 'Accueil', href: '#hero' },
-  { name: 'Projets', href: '#projects' },
-  { name: 'À propos', href: '#about' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'Accueil', href: '/' },
+  { name: 'Compétences', href: '/competences' },
+  { name: 'Projets', href: '/projets' },
+  { name: 'À propos', href: '/a-propos' },
+  { name: 'Contact', href: '/contact' }
 ];
 
 const socials = [
