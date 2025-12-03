@@ -33,11 +33,11 @@ export default defineNuxtConfig({
   },
 
   css: ['@/assets/css/main.css'],
+
   // nuxt.config.ts
   plugins: [
     { src: '~/plugins/firebase.js', mode: 'client' }
   ],
-
 
   postcss: {
     plugins: {
@@ -72,4 +72,21 @@ export default defineNuxtConfig({
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY
     },
   },
+
+  modules: ['@nuxt/image', '@nuxt/fonts'],
+
+  fonts: {
+    families: [
+      {
+        name: 'Space Grotesk',
+        provider: 'google',
+        weights: [400, 500, 600, 700]
+      },
+      {
+        name: 'Inter',
+        provider: 'google',
+        weights: [400, 500, 600, 700]
+      }
+    ]
+  }
 })
