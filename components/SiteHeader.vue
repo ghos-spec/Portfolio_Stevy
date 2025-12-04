@@ -17,7 +17,7 @@
       <!-- Logo with Glow -->
       <NuxtLink to="/" class="logo-wrapper group relative">
         <span class="logo-glow"></span>
-        <NuxtImg src="/logo/Logo_blanc.svg" alt="Logo Stevy" class="relative z-10 h-10 w-auto transition-transform duration-300 group-hover:scale-105" width="120" height="40" />
+        <NuxtImg src="/logo/stevyl.png" alt="Logo Stevy" class="relative z-10 h-10 w-auto transition-transform duration-300 group-hover:scale-105" width="120" height="55" />
       </NuxtLink>
 
       <!-- Navigation -->

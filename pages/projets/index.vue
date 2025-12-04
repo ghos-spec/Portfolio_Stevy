@@ -15,21 +15,76 @@
             Une sélection de projets sur lesquels j'ai travaillé, démontrant mes compétences et ma créativité.
           </p>
         </div>
-        
-        <!-- Placeholder for projects -->
-        <div class="grid md:grid-cols-2 gap-8">
-          <div v-for="project in projects" :key="project.title" class="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-[#5EDFFF]/30 transition-all">
-            <div class="aspect-video bg-gradient-to-br from-[#5EDFFF]/20 to-[#57F2CB]/10"></div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-[#5EDFFF] transition-colors">{{ project.title }}</h3>
-              <p class="text-white/50 text-sm mb-4">{{ project.description }}</p>
-              <div class="flex flex-wrap gap-2">
-                <span v-for="tech in project.tech" :key="tech" class="px-3 py-1 text-xs bg-[#5EDFFF]/10 text-[#5EDFFF] rounded-full">
-                  {{ tech }}
-                </span>
-              </div>
+        <div
+          v-if="availableCategories.length || availableTags.length"
+          class="mb-10 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 md:px-5 md:py-5"
+        >
+          <div class="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/40">Filtres</p>
+              <p class="text-xs text-white/60">Affinez les projets affichés par catégorie et technologies.</p>
+            </div>
+            <button
+              v-if="selectedCategory || selectedTag"
+              type="button"
+              class="self-start rounded-full border border-white/10 px-3 py-1 text-[11px] font-medium text-white/60 hover:text-white hover:border-[#5EDFFF]/40 hover:bg-[#5EDFFF]/10 transition-colors"
+              @click="resetFilters"
+            >
+              Réinitialiser les filtres
+            </button>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="mb-1 block text-xs font-semibold text-white/60">Catégorie</label>
+              <select
+                v-model="selectedCategory"
+                class="w-full rounded-xl border border-white/10 bg-[#020816] px-3 py-2 text-sm text-white/80 focus:border-[#5EDFFF] focus:outline-none"
+              >
+                <option value="">Toutes les catégories</option>
+                <option
+                  v-for="category in availableCategories"
+                  :key="category"
+                  :value="category"
+                >
+                  {{ category }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-1 block text-xs font-semibold text-white/60">Technologies / Tags</label>
+              <select
+                v-model="selectedTag"
+                class="w-full rounded-xl border border-white/10 bg-[#020816] px-3 py-2 text-sm text-white/80 focus:border-[#57F2CB] focus:outline-none"
+              >
+                <option value="">Tous les tags</option>
+                <option
+                  v-for="tag in availableTags"
+                  :key="tag"
+                  :value="tag"
+                >
+                  {{ tag }}
+                </option>
+              </select>
             </div>
           </div>
+        </div>
+
+        <!-- Placeholder for projects -->
+        <div v-if="isLoading" class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70">
+          Chargement des projets...
+        </div>
+        <div v-else-if="displayError" class="rounded-2xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200 max-w-xl mx-auto">
+          {{ displayError }}
+        </div>
+        <div v-else-if="!visibleProjects.length" class="text-center text-sm text-white/50">
+          Aucun projet publié pour le moment. Revenez bientôt pour découvrir de nouvelles réalisations.
+        </div>
+        <div v-else class="grid md:grid-cols-2 gap-8">
+          <ProjectCard
+            v-for="project in visibleProjects"
+            :key="project.id"
+            :project="project"
+          />
         </div>
       </div>
     </section>
@@ -37,8 +92,11 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { computed, ref } from 'vue';
 import FuturisticFooter from '~/components/FuturisticFooter.vue';
+import ProjectCard from '~/components/projects/ProjectCard.vue';
+import { useProjectsData, mapProjectsResponse } from '~/composables/useProjectsData';
 
 useHead({
   title: 'Projets | Stevy OBAME - Développeur Full-Stack',
@@ -47,26 +105,57 @@ useHead({
   ]
 });
 
-const projects = [
-  {
-    title: 'Portfolio Personnel',
-    description: 'Site portfolio moderne avec animations et design futuriste.',
-    tech: ['Nuxt', 'Tailwind', 'TypeScript']
-  },
-  {
-    title: 'Application E-commerce',
-    description: 'Plateforme de vente en ligne avec panier et paiement intégré.',
-    tech: ['Vue.js', 'Firebase', 'Stripe']
-  },
-  {
-    title: 'Dashboard Admin',
-    description: 'Interface d\'administration complète avec analytics et gestion.',
-    tech: ['Nuxt', 'Firebase', 'Chart.js']
-  },
-  {
-    title: 'Application Mobile',
-    description: 'Application cross-platform pour la gestion de tâches.',
-    tech: ['Vue.js', 'Capacitor', 'Firebase']
-  }
+const {
+  data: initialProjectsData,
+  pending,
+  error: asyncError
+} = await useAsyncData('public-projects', () => $fetch<any[]>('/api/projects'));
+
+const { projects, loading, error } = useProjectsData({
+  initialProjects: mapProjectsResponse(initialProjectsData.value || []),
+  autoFetch: false
+});
+
+const isLoading = computed(() => pending.value || loading.value);
+const displayError = computed(() => error.value || asyncError.value?.message || '');
+
+const PUBLIC_CATEGORY_OPTIONS = [
+  'Développement Web',
+  'Développement Mobile',
+  'Webdesign',
+  'Design Graphique',
+  'Audiovisuel'
 ];
+
+const selectedCategory = ref('');
+const selectedTag = ref('');
+
+const availableCategories = computed(() => PUBLIC_CATEGORY_OPTIONS);
+
+const availableTags = computed(() => {
+  const set = new Set<string>();
+  for (const project of projects.value) {
+    if (project.status !== 'Publié') continue;
+    for (const tag of project.tags || []) {
+      if (tag) {
+        set.add(tag);
+      }
+    }
+  }
+  return Array.from(set).sort();
+});
+
+const resetFilters = () => {
+  selectedCategory.value = '';
+  selectedTag.value = '';
+};
+
+const visibleProjects = computed(() =>
+  projects.value.filter((project) => {
+    if (project.status !== 'Publié') return false;
+    if (selectedCategory.value && project.category !== selectedCategory.value) return false;
+    if (selectedTag.value && !project.tags.includes(selectedTag.value)) return false;
+    return true;
+  })
+);
 </script>

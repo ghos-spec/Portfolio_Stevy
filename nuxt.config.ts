@@ -88,5 +88,17 @@ export default defineNuxtConfig({
         weights: [400, 500, 600, 700]
       }
     ]
-  }
+  },
+
+  // app: {
+  //   head: {
+  //     link: [
+  //       {
+  //         rel: 'icon',
+  //         type: 'image/png',
+  //         href: '/logo/SO.png'
+  //       }
+  //     ]
+  //   }
+  // }
 })

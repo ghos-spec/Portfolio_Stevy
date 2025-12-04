@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-type ProjectRecord = {
+export type ProjectRecord = {
   id: string;
   name: string;
   description: string;
@@ -15,7 +15,7 @@ type ProjectRecord = {
   videoUrl?: string;
 };
 
-type ProjectPayload = {
+export type ProjectPayload = {
   name: string;
   description: string;
   tags?: string[];
@@ -98,8 +98,18 @@ const mapProjectDoc = (entry: any): ProjectRecord => {
   };
 };
 
-export const useProjectsData = () => {
-  const projects = ref<ProjectRecord[]>([]);
+export const mapProjectsResponse = (entries: any[]): ProjectRecord[] => {
+  if (!Array.isArray(entries)) return [];
+  return entries.map(mapProjectDoc);
+};
+
+type UseProjectsOptions = {
+  initialProjects?: ProjectRecord[];
+  autoFetch?: boolean;
+};
+
+export const useProjectsData = (options: UseProjectsOptions = {}) => {
+  const projects = ref<ProjectRecord[]>(options.initialProjects ?? []);
   const loading = ref(false);
   const error = ref('');
 
@@ -109,7 +119,7 @@ export const useProjectsData = () => {
 
     try {
       const response = await $fetch<any[]>('/api/projects');
-      projects.value = response.map(mapProjectDoc);
+      projects.value = mapProjectsResponse(response);
     } catch (err) {
       console.error('fetchProjects error', err);
       error.value = 'Impossible de charger les projets.';
@@ -194,7 +204,7 @@ export const useProjectsData = () => {
     await fetchProjects();
   };
 
-  if (process.client) {
+  if (process.client && (options.autoFetch ?? true) && projects.value.length === 0) {
     fetchProjects();
   }
 
