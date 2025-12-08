@@ -94,7 +94,7 @@ const timeline = [
       'Applications multi-écrans responsive',
       'Gestion de bases MySQL & Firebase',
       'Projets académiques livrés en équipe'
-    ],
+    ], 
     icon: 'mdi:laptop'
   },
   {

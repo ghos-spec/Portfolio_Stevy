@@ -50,10 +50,10 @@
             <span>Notifications</span>
             <button class="text-xs text-cyan-400 hover:text-cyan-300" @click="closeNotifications">Fermer</button>
           </div>
-          <p v-if="notifications.length === 0" class="text-sm text-white/60">Aucune notification.</p>
+          <p v-if="visibleNotifications.length === 0" class="text-sm text-white/60">Aucune notification.</p>
           <ul v-else class="space-y-3">
             <li
-              v-for="notification in notifications"
+              v-for="notification in visibleNotifications"
               :key="notification.id"
               class="rounded-xl border border-white/5 bg-white/5 px-3 py-2 text-sm text-white/80"
             >
@@ -88,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { useAdminHeader } from '~/composables/useAdminHeader';
 import { useProfileData } from '~/composables/useProfileData';
 
@@ -120,6 +120,7 @@ const props = defineProps({
 const { title, subtitle } = toRefs(props);
 
 const { user, initials, notifications, unreadCount, markNotificationAsRead } = useAdminHeader();
+const visibleNotifications = computed(() => notifications.value.filter((notif) => !notif.read));
 const showNotifications = ref(false);
 
 const toggleNotifications = () => {

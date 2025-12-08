@@ -149,5 +149,18 @@ export default defineEventHandler(async (event) => {
   }
 
   const updatedDoc = await docRef.get();
-  return { id, ...(updatedDoc.data() || {}) };
+  const updatedData = updatedDoc.data() || {};
+
+  if (updatedData.status === 'Publié' && existing.status !== 'Publié') {
+    await db.collection('notifications').add({
+      title: 'Projet publié',
+      message: updatedData.name || 'Un projet a été publié',
+      read: false,
+      createdAt: FieldValue.serverTimestamp(),
+      type: 'project',
+      projectId: id
+    });
+  }
+
+  return { id, ...updatedData };
 });

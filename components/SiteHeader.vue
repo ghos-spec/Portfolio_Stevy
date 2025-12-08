@@ -15,9 +15,15 @@
 
     <div class="relative mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 text-white">
       <!-- Logo with Glow -->
-      <NuxtLink to="/" class="logo-wrapper group relative">
+      <NuxtLink to="/" class="logo-wrapper group relative ml-2">
         <span class="logo-glow"></span>
-        <NuxtImg src="/logo/stevyl.png" alt="Logo Stevy" class="relative z-10 h-10 w-auto transition-transform duration-300 group-hover:scale-105" width="120" height="55" />
+        <NuxtImg
+          src="/logo/stevyLogo.svg"
+          alt="Logo Stevy"
+          class="relative z-10 h-10 w-auto transition-transform duration-300 scale-300 group-hover:scale-150"
+          width="120"
+          height="55"
+        />
       </NuxtLink>
 
       <!-- Navigation -->

@@ -57,7 +57,7 @@
       <ul class="divide-y divide-white/5">
         <li v-for="project in filteredProjects" :key="project.id" class="flex flex-col gap-4 px-4 py-4 sm:px-6 lg:grid lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] lg:items-center">
           <div class="flex items-center gap-4">
-            <div class="flex h-12 w-12 overflow-hidden rounded-2xl bg-white/5 text-lg font-semibold">
+            <div class="flex h-12 w-12 overflow-hidden rounded-2xl bg-white/5 text-lg font-semibold shrink-0">
               <img
                 v-if="project.imageUrl"
                 :src="project.imageUrl"
@@ -70,7 +70,7 @@
             </div>
             <div>
               <p class="font-semibold">{{ project.name }}</p>
-              <p class="text-sm text-white/60">{{ project.description }}</p>
+              <p class="text-sm text-white/60 project-description-snippet">{{ project.description }}</p>
             </div>
           </div>
 
@@ -412,15 +412,15 @@ const addTag = () => {
   tagInput.value = '';
 };
 
-const removeTag = (tag) => {
+const removeTag = (tag: string) => {
   form.tags = form.tags.filter((item) => item !== tag);
 };
 
-const setStatus = (status) => {
+const setStatus = (status: 'Publié' | 'Brouillon') => {
   form.status = status;
 };
 
-const triggerFile = (type) => {
+const triggerFile = (type: 'image' | 'video') => {
   if (type === 'image') {
     imageInput.value?.click();
   } else {
@@ -553,5 +553,13 @@ onBeforeUnmount(() => {
 .modal-fade-enter-from,
 .modal-fade-leave-to {
   opacity: 0;
+}
+
+.project-description-snippet {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 2;
 }
 </style>

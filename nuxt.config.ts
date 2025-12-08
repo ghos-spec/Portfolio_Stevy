@@ -25,6 +25,9 @@ const reportMissingEnv = (keys: readonly string[], scope: string) => {
 reportMissingEnv(requiredClientEnv, 'client');
 reportMissingEnv(requiredServerEnv, 'serveur');
 
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseHostname = supabaseUrl ? new URL(supabaseUrl).hostname : undefined;
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
 
@@ -71,6 +74,11 @@ export default defineNuxtConfig({
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY
     },
+  },
+
+  image: {
+    domains: supabaseHostname ? [supabaseHostname] : [],
+    format: ['webp', 'jpeg', 'png']
   },
 
   modules: ['@nuxt/image', '@nuxt/fonts'],

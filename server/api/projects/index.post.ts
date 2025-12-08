@@ -110,6 +110,17 @@ export default defineEventHandler(async (event) => {
     updatedAt: FieldValue.serverTimestamp()
   });
 
+  if (status === 'Publié') {
+    await db.collection('notifications').add({
+      title: 'Nouveau projet publié',
+      message: name,
+      read: false,
+      createdAt: FieldValue.serverTimestamp(),
+      type: 'project',
+      projectId: docRef.id
+    });
+  }
+
   return {
     id: docRef.id,
     name,

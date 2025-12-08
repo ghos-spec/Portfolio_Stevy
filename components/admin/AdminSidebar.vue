@@ -6,7 +6,7 @@
     ]"
   >
     <div class="flex items-center justify-between px-6 pt-8 pb-6">
-      <img src="/logo/SO.png" alt="SM logo" class="h-20" />
+      <img src="/logo/stevyLogo.svg" alt="SM logo" class="h-24" />
       <button class="rounded-full p-2 text-white/60 transition hover:bg-white/5 hover:text-white lg:hidden" @click="$emit('close')">
         <svg viewBox="0 0 24 24" class="h-5 w-5">
           <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />

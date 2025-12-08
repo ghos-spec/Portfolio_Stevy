@@ -53,6 +53,15 @@ export default defineEventHandler(async (event) => {
 
     const docRef = await db.collection('messages').add(messageData);
 
+    await db.collection('notifications').add({
+      title: `Nouveau message de ${messageData.name}`,
+      message: messageData.subject || 'Nouveau message reçu',
+      read: false,
+      createdAt: FieldValue.serverTimestamp(),
+      type: 'message',
+      messageId: docRef.id
+    });
+
     return {
       success: true,
       messageId: docRef.id,
