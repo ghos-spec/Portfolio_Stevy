@@ -47,21 +47,9 @@
         </span>
         <div class="flex items-center gap-2">
           <span class="hidden sm:inline text-[11px] text-white/55">Explorer le projet&nbsp;:</span>
-          <!--
-          <a
-            v-if="project.githubUrl"
-            :href="project.githubUrl"
-            target="_blank"
-            rel="noopener noreferrer"
+          <NuxtLink
+            :to="`/projets/${project.id}`"
             class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-white/70 hover:text-white hover:border-[#5EDFFF]/40 hover:bg-[#5EDFFF]/10 transition-colors"
-          >
-            En savoir plus →
-          </a>
-          -->
-          <button
-            type="button"
-            class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-white/70 hover:text-white hover:border-[#5EDFFF]/40 hover:bg-[#5EDFFF]/10 transition-colors"
-            @click="showDetails = true"
           >
             {{ 
               project.category === 'Design Graphique'
@@ -70,7 +58,7 @@
                   ? 'Voir la vidéo →'
                   : 'En savoir plus →'
             }}
-          </button>
+          </NuxtLink>
           <a
             v-if="project.liveUrl"
             :href="project.liveUrl"
