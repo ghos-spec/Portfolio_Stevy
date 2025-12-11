@@ -117,7 +117,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: '/logo/SO.jpg'
+      content: '/projet.png'
     },
     {
       property: 'og:type',
@@ -138,7 +138,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: '/logo/SO.jpg'
+      content: '/projet.png'
     }
   ]
 });

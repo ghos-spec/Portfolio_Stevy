@@ -29,7 +29,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: '/logo/SO.jpg'
+      content: '/competence.png'
     },
     {
       property: 'og:type',
@@ -50,7 +50,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: '/logo/SO.jpg'
+      content: '/competence.png'
     }
   ]
 });

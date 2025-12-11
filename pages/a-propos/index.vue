@@ -30,7 +30,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: '/logo/SO.jpg'
+      content: '/a-propos.png'
     },
     {
       property: 'og:type',
@@ -51,7 +51,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: '/logo/SO.jpg'
+      content: '/a-propos.png'
     }
   ]
 });
