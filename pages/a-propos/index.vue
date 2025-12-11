@@ -12,9 +12,13 @@ import AboutTimeline from '~/components/AboutTimeline.vue';
 import FuturisticFooter from '~/components/FuturisticFooter.vue';
 
 useHead({
-  title: 'À Propos | Stevy OBAME - Développeur Full-Stack',
+  title: 'À propos | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)',
   meta: [
-    { name: 'description', content: 'Découvrez le parcours de Stevy OBAME, développeur Full-Stack passionné basé à Libreville, Gabon.' }
+    {
+      name: 'description',
+      content:
+        "Découvrez le parcours de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon), et sa manière d'accompagner vos projets digitaux et visuels."
+    }
   ]
 });
 </script>

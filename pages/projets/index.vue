@@ -99,9 +99,13 @@ import ProjectCard from '~/components/projects/ProjectCard.vue';
 import { useProjectsData, mapProjectsResponse } from '~/composables/useProjectsData';
 
 useHead({
-  title: 'Projets | Stevy OBAME - Développeur Full-Stack',
+  title: 'Projets | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)',
   meta: [
-    { name: 'description', content: 'Découvrez les projets réalisés par Stevy OBAME : applications web, sites vitrines et plus.' }
+    {
+      name: 'description',
+      content:
+        "Découvrez les projets web, identités visuelles et créations graphiques réalisés par Stevy OBAME, freelance à Libreville (Gabon), pour des clients au Gabon et à l'international."
+    }
   ]
 });
 

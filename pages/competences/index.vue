@@ -11,9 +11,13 @@ import FuturisticFooter from '~/components/FuturisticFooter.vue';
 import SkillsSection from '~/components/SkillsSection.vue';
 
 useHead({
-  title: 'Compétences | Stevy OBAME - Développeur Full-Stack',
+  title: 'Compétences | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)',
   meta: [
-    { name: 'description', content: 'Découvrez les compétences techniques de Stevy OBAME : Vue.js, Nuxt, TypeScript, Firebase et plus.' }
+    {
+      name: 'description',
+      content:
+        "Découvrez les compétences de Stevy OBAME en développement web (Vue.js, Nuxt, TypeScript, Firebase...) et en design graphique."
+    }
   ]
 });
 </script>

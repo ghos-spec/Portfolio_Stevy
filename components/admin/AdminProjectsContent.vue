@@ -63,6 +63,8 @@
                 :src="project.imageUrl"
                 :alt="`Visuel du projet ${project.name}`"
                 class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div v-else class="flex h-full w-full items-center justify-center">
                 {{ project.initials }}
