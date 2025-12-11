@@ -11,6 +11,9 @@ import AboutSection from '~/components/AboutSection.vue';
 import AboutTimeline from '~/components/AboutTimeline.vue';
 import FuturisticFooter from '~/components/FuturisticFooter.vue';
 
+const requestUrl = useRequestURL();
+const aboutImage = new URL('/a-propos.png', requestUrl.origin).href;
+
 useHead({
   title: 'À propos | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)',
   meta: [
@@ -30,7 +33,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: '/a-propos.png'
+      content: aboutImage
     },
     {
       property: 'og:type',
@@ -51,7 +54,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: '/a-propos.png'
+      content: aboutImage
     }
   ]
 });

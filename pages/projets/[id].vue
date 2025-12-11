@@ -135,7 +135,7 @@ useHead(() => {
     project.value?.description ||
     "Découvrez un projet réalisé par Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon).";
   const description = rawDescription.length > 180 ? `${rawDescription.slice(0, 177)}...` : rawDescription;
-  const rawImage = project.value?.imageUrl || '/logo/SO.png';
+  const rawImage = project.value?.imageUrl || '/projet.png';
   const image = rawImage.startsWith('http') ? rawImage : new URL(rawImage, requestUrl.origin).href;
   const slugOrId = project.value?.slug || idOrSlug;
   const canonical = new URL(`/projets/${slugOrId}`, requestUrl.origin);
