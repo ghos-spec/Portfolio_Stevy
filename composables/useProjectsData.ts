@@ -9,6 +9,7 @@ export type ProjectRecord = {
   status: string;
   date: string;
   initials: string;
+  slug: string;
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
@@ -23,6 +24,7 @@ export type ProjectPayload = {
   status?: string;
   date?: Date | string;
   initials?: string;
+  slug?: string;
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
@@ -91,6 +93,7 @@ const mapProjectDoc = (entry: any): ProjectRecord => {
     status: data.status ?? 'Brouillon',
     date: rawDate ? formatDateLabel(rawDate) : '',
     initials: data.initials ?? formatInitials(data.name),
+    slug: data.slug ?? '',
     githubUrl: data.githubUrl ?? '',
     liveUrl: data.liveUrl ?? '',
     imageUrl: data.imageUrl ?? '',
@@ -139,6 +142,7 @@ export const useProjectsData = (options: UseProjectsOptions = {}) => {
       formData.append('tags', JSON.stringify(payload.tags ?? []));
       formData.append('category', payload.category ?? 'Développement Web');
       formData.append('status', payload.status ?? 'Brouillon');
+      formData.append('slug', payload.slug ?? '');
       formData.append('githubUrl', payload.githubUrl ?? '');
       formData.append('liveUrl', payload.liveUrl ?? '');
 
@@ -177,6 +181,7 @@ export const useProjectsData = (options: UseProjectsOptions = {}) => {
       if (updates.status !== undefined) formData.append('status', updates.status);
       if (updates.githubUrl !== undefined) formData.append('githubUrl', updates.githubUrl);
       if (updates.liveUrl !== undefined) formData.append('liveUrl', updates.liveUrl);
+      if (updates.slug !== undefined) formData.append('slug', updates.slug);
 
       if (updates.imageFile) {
         formData.append('image', updates.imageFile);

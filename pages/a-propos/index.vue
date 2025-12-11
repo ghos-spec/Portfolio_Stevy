@@ -18,6 +18,40 @@ useHead({
       name: 'description',
       content:
         "Découvrez le parcours de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon), et sa manière d'accompagner vos projets digitaux et visuels."
+    },
+    {
+      property: 'og:title',
+      content: 'À propos | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)'
+    },
+    {
+      property: 'og:description',
+      content:
+        "Découvrez le parcours de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon), et sa manière d'accompagner vos projets digitaux et visuels."
+    },
+    {
+      property: 'og:image',
+      content: '/logo/SO.png'
+    },
+    {
+      property: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:title',
+      content: 'À propos | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)'
+    },
+    {
+      name: 'twitter:description',
+      content:
+        "Découvrez le parcours de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon), et sa manière d'accompagner vos projets digitaux et visuels."
+    },
+    {
+      name: 'twitter:image',
+      content: '/logo/SO.png'
     }
   ]
 });

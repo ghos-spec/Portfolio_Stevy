@@ -107,14 +107,20 @@ import FuturisticFooter from '~/components/FuturisticFooter.vue';
 import { mapProjectsResponse, type ProjectRecord } from '~/composables/useProjectsData';
 
 const route = useRoute();
-const projectId = route.params.id as string;
+const idOrSlug = route.params.id as string;
+const requestUrl = useRequestURL();
 
 const { data, pending, error } = await useAsyncData<ProjectRecord | null>(
-  `public-project-${projectId}`,
+  `public-project-${idOrSlug}`,
   async () => {
     const response = await $fetch<any[]>('/api/projects');
     const projects = mapProjectsResponse(response);
-    const found = projects.find((project) => project.id === projectId && project.status === 'Publié');
+
+    let found = projects.find((project) => project.slug === idOrSlug && project.status === 'Publié');
+    if (!found) {
+      found = projects.find((project) => project.id === idOrSlug && project.status === 'Publié');
+    }
+
     return found ?? null;
   }
 );
@@ -130,9 +136,8 @@ useHead(() => {
     "Découvrez un projet réalisé par Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon).";
   const description = rawDescription.length > 180 ? `${rawDescription.slice(0, 177)}...` : rawDescription;
   const image = project.value?.imageUrl || '';
-
-  const url = useRequestURL();
-  const canonical = new URL(`/projets/${projectId}`, url.origin);
+  const slugOrId = project.value?.slug || idOrSlug;
+  const canonical = new URL(`/projets/${slugOrId}`, requestUrl.origin);
 
   const meta: Record<string, string>[] = [
     { name: 'description', content: description },

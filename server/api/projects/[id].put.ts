@@ -26,6 +26,17 @@ const parseFormData = (formParts: Awaited<ReturnType<typeof readMultipartFormDat
   return { fields, imageFile, videoFile };
 };
 
+const slugify = (value: string): string => {
+  return (
+    value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'projet'
+  );
+};
+
 const assertFileValid = (file: { data: Buffer; filename?: string; type?: string } | null, allowedTypes: string[], label: string) => {
   if (!file) return;
   if (!file.type || !allowedTypes.includes(file.type)) {
@@ -119,6 +130,26 @@ export default defineEventHandler(async (event) => {
       updates.tags = JSON.parse(fields.tags);
     } catch {
       updates.tags = [];
+    }
+  }
+
+  if (fields.slug !== undefined) {
+    const rawSlug = fields.slug.trim();
+    if (rawSlug) {
+      const base = slugify(rawSlug);
+      let candidate = base;
+      let suffix = 2;
+
+      while (true) {
+        const snapshotSlug = await db.collection('projects').where('slug', '==', candidate).get();
+        const conflict = snapshotSlug.docs.find((doc) => doc.id !== id);
+        if (!conflict) break;
+        candidate = `${base}-${suffix++}`;
+      }
+
+      updates.slug = candidate;
+    } else {
+      updates.slug = '';
     }
   }
 

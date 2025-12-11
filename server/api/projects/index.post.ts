@@ -62,6 +62,17 @@ const uploadToSupabase = async (
   return { url: signedData.signedUrl, path };
 };
 
+const slugify = (value: string): string => {
+  return (
+    value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'projet'
+  );
+};
+
 export default defineEventHandler(async (event) => {
   const form = await readMultipartFormData(event);
   if (!form) {
@@ -84,22 +95,36 @@ export default defineEventHandler(async (event) => {
   const category = fields.category || 'Développement Web';
   const githubUrl = fields.githubUrl || '';
   const liveUrl = fields.liveUrl || '';
+  const rawSlug = fields.slug?.trim();
+  const slugBase = rawSlug || name;
+  const slugifiedBase = slugBase ? slugify(slugBase) : '';
 
   const config = useRuntimeConfig();
   const bucket = config.supabase?.bucket || 'projects-media';
+  const db = getFirestoreAdmin();
+
+  let slug = slugifiedBase;
+  if (slug) {
+    let suffix = 2;
+    while (true) {
+      const snapshot = await db.collection('projects').where('slug', '==', slug).get();
+      if (snapshot.empty) break;
+      slug = `${slugifiedBase}-${suffix++}`;
+    }
+  }
 
   const [imageUpload, videoUpload] = await Promise.all([
     uploadToSupabase(imageFile, bucket, 'projects/images'),
     uploadToSupabase(videoFile, bucket, 'projects/videos')
   ]);
 
-  const db = getFirestoreAdmin();
   const docRef = await db.collection('projects').add({
     name,
     description,
     tags,
     category,
     status,
+    slug,
     githubUrl,
     liveUrl,
     imageUrl: imageUpload.url,
@@ -128,6 +153,7 @@ export default defineEventHandler(async (event) => {
     tags,
     category,
     status,
+    slug,
     githubUrl,
     liveUrl,
     imageUrl: imageUpload.url,

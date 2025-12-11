@@ -17,6 +17,40 @@ useHead({
       name: 'description',
       content:
         "Découvrez les compétences de Stevy OBAME en développement web (Vue.js, Nuxt, TypeScript, Firebase...) et en design graphique."
+    },
+    {
+      property: 'og:title',
+      content: 'Compétences | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)'
+    },
+    {
+      property: 'og:description',
+      content:
+        "Découvrez les compétences de Stevy OBAME en développement web (Vue.js, Nuxt, TypeScript, Firebase...) et en design graphique."
+    },
+    {
+      property: 'og:image',
+      content: '/logo/SO.png'
+    },
+    {
+      property: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:title',
+      content: 'Compétences | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)'
+    },
+    {
+      name: 'twitter:description',
+      content:
+        "Découvrez les compétences de Stevy OBAME en développement web (Vue.js, Nuxt, TypeScript, Firebase...) et en design graphique."
+    },
+    {
+      name: 'twitter:image',
+      content: '/logo/SO.png'
     }
   ]
 });

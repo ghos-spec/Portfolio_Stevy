@@ -20,6 +20,40 @@ useHead({
       name: 'description',
       content:
         "Portfolio de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon). Création de sites web modernes, identités visuelles et contenus créatifs pour des clients au Gabon et à l'international."
+    },
+    {
+      property: 'og:title',
+      content: 'Accueil | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)'
+    },
+    {
+      property: 'og:description',
+      content:
+        "Portfolio de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon). Création de sites web modernes, identités visuelles et contenus créatifs pour des clients au Gabon et à l'international."
+    },
+    {
+      property: 'og:image',
+      content: '/logo/SO.png'
+    },
+    {
+      property: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:title',
+      content: 'Accueil | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)'
+    },
+    {
+      name: 'twitter:description',
+      content:
+        "Portfolio de Stevy OBAME, développeur web & designer graphique freelance basé à Libreville (Gabon). Création de sites web modernes, identités visuelles et contenus créatifs pour des clients au Gabon et à l'international."
+    },
+    {
+      name: 'twitter:image',
+      content: '/logo/SO.png'
     }
   ]
 });

@@ -48,7 +48,7 @@
         <div class="flex items-center gap-2">
           <span class="hidden sm:inline text-[11px] text-white/55">Explorer le projet&nbsp;:</span>
           <NuxtLink
-            :to="`/projets/${project.id}`"
+            :to="`/projets/${project.slug || project.id}`"
             class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-white/70 hover:text-white hover:border-[#5EDFFF]/40 hover:bg-[#5EDFFF]/10 transition-colors"
           >
             {{ 

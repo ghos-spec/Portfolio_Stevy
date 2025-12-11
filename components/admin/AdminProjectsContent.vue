@@ -184,6 +184,17 @@
             </div>
 
             <label class="space-y-2 text-sm font-semibold text-white/80">
+              <span>Slug (URL du projet)</span>
+              <input
+                v-model="form.slug"
+                type="text"
+                placeholder="site-vitrine-agence-marketing"
+                class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-cyan-400 focus:outline-none"
+              />
+              <span class="block text-[11px] text-white/40">Optionnel : si vide, un slug sera généré automatiquement à partir du titre.</span>
+            </label>
+
+            <label class="space-y-2 text-sm font-semibold text-white/80">
               <span>Catégorie</span>
               <select v-model="form.category" class="w-full cursor-pointer rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none">
                 <option v-for="category in CATEGORY_OPTIONS" :key="category" :value="category" class="bg-[#0B1527] text-white">
@@ -325,6 +336,7 @@ const videoObjectUrl = ref<string | null>(null);
 
 const form = reactive({
   name: '',
+  slug: '',
   description: '',
   tags: [] as string[],
   category: 'Développement Web',
@@ -389,6 +401,7 @@ const closeModal = () => {
 
 const resetForm = () => {
   form.name = '';
+  form.slug = '';
   form.description = '';
   form.tags = [];
   form.category = 'Développement Web';
@@ -468,6 +481,7 @@ const handleSubmit = async () => {
     if (isEditMode.value && currentProjectId.value) {
       await updateProject(currentProjectId.value, {
         name: form.name,
+        slug: form.slug || undefined,
         description: form.description,
         tags: form.tags,
         category: form.category,
@@ -482,6 +496,7 @@ const handleSubmit = async () => {
     } else {
       await createProject({
         name: form.name,
+        slug: form.slug || undefined,
         description: form.description,
         tags: form.tags,
         category: form.category,
@@ -505,6 +520,7 @@ const handleSubmit = async () => {
 const openEditModal = (project: ProjectRecord) => {
   currentProjectId.value = project.id;
   form.name = project.name;
+  form.slug = project.slug || '';
   form.description = project.description;
   form.tags = [...project.tags];
   form.category = project.category || 'Développement Web';
