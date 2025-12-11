@@ -9,7 +9,7 @@
       <div class="relative flex items-center justify-center">
         <div class="loader-ring"></div>
         <img
-          src="/logo/Stevylogooo.svg"
+          src="/logo/StevylogoHero.svg"
           alt="Chargement du portfolio de Stevy OBAME"
           class="loader-logo"
         />
