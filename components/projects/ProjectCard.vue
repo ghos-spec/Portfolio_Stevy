@@ -63,7 +63,13 @@
             class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium text-white/70 hover:text-white hover:border-[#5EDFFF]/40 hover:bg-[#5EDFFF]/10 transition-colors"
             @click="showDetails = true"
           >
-            En savoir plus →
+            {{ 
+              project.category === 'Design Graphique'
+                ? 'En savoir plus →'
+                : project.category === 'Audiovisuel'
+                  ? 'Voir la vidéo →'
+                  : 'En savoir plus →'
+            }}
           </button>
           <a
             v-if="project.liveUrl"
@@ -72,7 +78,13 @@
             rel="noopener noreferrer"
             class="rounded-full bg-[#5EDFFF] px-3 py-1 text-[11px] font-semibold text-[#020810] hover:bg-[#57F2CB] transition-colors"
           >
-            Découvrir le projet →
+            {{
+              project.category === 'Design Graphique'
+                ? 'Voir la galerie →'
+                : project.category === 'Audiovisuel'
+                  ? 'Regarder la vidéo →'
+                  : 'Découvrir le projet →'
+            }}
           </a>
         </div>
       </div>
@@ -176,7 +188,13 @@
                     rel="noopener noreferrer"
                     class="rounded-full bg-[#5EDFFF] px-4 py-2 text-xs font-semibold text-[#020810] hover:bg-[#57F2CB] transition-colors"
                   >
-                    Découvrir le projet →
+                    {{
+                      project.category === 'Design Graphique'
+                        ? 'Voir la galerie →'
+                        : project.category === 'Audiovisuel'
+                          ? 'Regarder la vidéo →'
+                          : 'Découvrir le projet →'
+                    }}
                   </a>
                   <button
                     type="button"
