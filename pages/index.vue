@@ -32,7 +32,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: '/logo/SO.png'
+      content: '/logo/SO.jpg'
     },
     {
       property: 'og:type',
@@ -53,7 +53,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: '/logo/SO.png'
+      content: '/logo/SO.jpg'
     }
   ]
 });

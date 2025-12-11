@@ -8,6 +8,7 @@ type ProjectResponse = {
   tags: string[];
   category?: string;
   status?: string;
+  slug?: string;
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
@@ -59,6 +60,7 @@ export default defineEventHandler(async () => {
         tags: Array.isArray(data.tags) ? data.tags : [],
         category: data.category,
         status: data.status,
+        slug: data.slug,
         githubUrl: data.githubUrl,
         liveUrl: data.liveUrl,
         imageUrl,
