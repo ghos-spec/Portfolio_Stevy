@@ -81,7 +81,22 @@ export default defineNuxtConfig({
     format: ['webp', 'jpeg', 'png']
   },
 
-  modules: ['@nuxt/image', '@nuxt/fonts'],
+  modules: ['@nuxt/image', '@nuxt/fonts', '@nuxtjs/sitemap'],
+
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://portfolio-stevy.vercel.app',
+    name: 'Stevy OBAME - Développeur Web & Designer Graphique'
+  },
+
+  sitemap: {
+    sources: [
+      '/api/__sitemap__/projects'
+    ],
+    exclude: [
+      '/admin',
+      '/admin/**'
+    ]
+  },
 
   fonts: {
     families: [
@@ -95,7 +110,10 @@ export default defineNuxtConfig({
         provider: 'google',
         weights: [400, 500, 600, 700]
       }
-    ]
+    ],
+    defaults: {
+      preload: true
+    }
   },
 
   app: {
@@ -106,10 +124,32 @@ export default defineNuxtConfig({
       link: [
         {
           rel: 'icon',
-          type: 'image/png',
-          href: '/logo/SO.png'
+          type: 'image/jpeg',
+          href: '/logo/SO.jpg'
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com'
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: 'anonymous'
         }
       ]
+    }
+  },
+
+  experimental: {
+    payloadExtraction: true,
+    renderJsonPayloads: true
+  },
+
+  nitro: {
+    compressPublicAssets: true,
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', '/a-propos', '/projets', '/competences', '/contact']
     }
   }
 })

@@ -1,5 +1,6 @@
 <template>
   <header
+    role="banner"
     :class="[
       'sticky top-0 z-50 transition-all duration-500',
       isScrolled ? 'header-scrolled' : 'header-top'
@@ -27,7 +28,7 @@
       </NuxtLink>
 
       <!-- Navigation -->
-      <nav class="hidden items-center gap-1 lg:flex">
+      <nav aria-label="Navigation principale" class="hidden items-center gap-1 lg:flex">
         <NuxtLink
           v-for="link in navLinks"
           :key="link.to"
@@ -71,6 +72,9 @@
           type="button" 
           class="mobile-menu-btn lg:hidden"
           :class="{ 'is-active': isMenuOpen }"
+          :aria-expanded="isMenuOpen"
+          aria-label="Menu de navigation"
+          aria-controls="mobile-menu"
           @click="toggleMenu()"
         >
           <span class="menu-line menu-line-1"></span>
@@ -82,7 +86,7 @@
 
     <!-- Mobile Menu -->
     <Transition name="slide-fade">
-      <div v-if="isMenuOpen" class="mobile-menu lg:hidden">
+      <div v-if="isMenuOpen" id="mobile-menu" class="mobile-menu lg:hidden">
         <!-- Grid Background -->
         <div class="mobile-menu-grid"></div>
         

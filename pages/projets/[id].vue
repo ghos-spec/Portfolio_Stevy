@@ -127,6 +127,31 @@ const { data, pending, error } = await useAsyncData<ProjectRecord | null>(
 
 const project = computed(() => data.value);
 
+const { breadcrumbSchema, projectSchema, addStructuredData } = useStructuredData();
+
+watchEffect(() => {
+  if (project.value) {
+    const breadcrumbs = breadcrumbSchema([
+      { name: 'Accueil', url: '/' },
+      { name: 'Projets', url: '/projets' },
+      { name: project.value.name, url: `/projets/${project.value.slug || idOrSlug}` }
+    ]);
+
+    const projectData = projectSchema({
+      name: project.value.name,
+      description: project.value.description,
+      imageUrl: project.value.imageUrl,
+      liveUrl: project.value.liveUrl,
+      githubUrl: project.value.githubUrl,
+      category: project.value.category,
+      tags: project.value.tags,
+      date: project.value.date
+    });
+
+    addStructuredData([breadcrumbs, projectData]);
+  }
+});
+
 useHead(() => {
   const baseTitle =
     'Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)';

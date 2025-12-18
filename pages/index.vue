@@ -13,6 +13,12 @@ import HeroSection from '~/components/HeroSection.vue';
 import SignatureSection from '~/components/SignatureSection.vue';
 import FuturisticFooter from '~/components/FuturisticFooter.vue';
 
+const requestUrl = useRequestURL();
+const homeImage = new URL('/acceuil.png', requestUrl.origin).href;
+
+const { personSchema, portfolioSchema, addStructuredData } = useStructuredData();
+addStructuredData([personSchema(), portfolioSchema()]);
+
 useHead({
   title: 'Accueil | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)',
   meta: [
@@ -32,7 +38,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: '/acceuil.png'
+      content: homeImage
     },
     {
       property: 'og:type',
@@ -53,7 +59,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: '/acceuil.png'
+      content: homeImage
     }
   ]
 });

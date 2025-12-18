@@ -14,6 +14,15 @@ import FuturisticFooter from '~/components/FuturisticFooter.vue';
 const requestUrl = useRequestURL();
 const aboutImage = new URL('/a-propos.png', requestUrl.origin).href;
 
+const { breadcrumbSchema, personSchema, addStructuredData } = useStructuredData();
+
+const breadcrumbs = breadcrumbSchema([
+  { name: 'Accueil', url: '/' },
+  { name: 'À propos', url: '/a-propos' }
+]);
+
+addStructuredData([breadcrumbs, personSchema()]);
+
 useHead({
   title: 'À propos | Stevy OBAME - Développeur web & designer graphique freelance à Libreville (Gabon)',
   meta: [

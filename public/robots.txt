@@ -1,2 +1,9 @@
+# Robots.txt pour Portfolio Stevy OBAME
 User-Agent: *
-Disallow:
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://portfolio-stevy.vercel.app/sitemap.xml
