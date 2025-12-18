@@ -121,6 +121,12 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'fr'
       },
+      meta: [
+        {
+          name: 'google-site-verification',
+          content: 'sHk_h2jalbnGkyQ81fJ_AG0IcjCsVxThQ7wcAqIOBq0'
+        }
+      ],
       link: [
         {
           rel: 'icon',
