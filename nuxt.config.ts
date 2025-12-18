@@ -140,16 +140,7 @@ export default defineNuxtConfig({
     }
   },
 
-  experimental: {
-    payloadExtraction: true,
-    renderJsonPayloads: true
-  },
-
   nitro: {
-    compressPublicAssets: true,
-    prerender: {
-      crawlLinks: true,
-      routes: ['/', '/a-propos', '/projets', '/competences', '/contact']
-    }
+    compressPublicAssets: true
   }
 })
