@@ -81,7 +81,11 @@ export default defineNuxtConfig({
     format: ['webp', 'jpeg', 'png']
   },
 
-  modules: ['@nuxt/image', '@nuxt/fonts', '@nuxtjs/sitemap'],
+  modules: ['@nuxt/image', '@nuxt/fonts', '@nuxtjs/sitemap', 'nuxt-gtag'],
+
+  gtag: {
+    id: 'G-DFCHVRESRD'
+  },
 
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || 'https://portfolio-stevy.vercel.app',
@@ -128,11 +132,11 @@ export default defineNuxtConfig({
         }
       ],
       link: [
-        {
-          rel: 'icon',
-          type: 'image/jpeg',
-          href: '/logo/SO.jpg'
-        },
+        // {
+        //   rel: 'icon',
+        //   type: 'image/jpeg',
+        //   href: '/logo/SO.jpg'
+        // },
         {
           rel: 'preconnect',
           href: 'https://fonts.googleapis.com'
