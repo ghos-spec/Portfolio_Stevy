@@ -1,0 +1,22 @@
+name: Supabase Ping
+on:
+  schedule:
+    - cron: '0 */12 * * *'  # toutes les 12h
+  workflow_dispatch:  # pour déclencher manuellement
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        run: |
+          echo "🏓 Pinging Supabase to keep project active..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://bktfnqznbjaamlfdxfbs.supabase.co/rest/v1/" \
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJrdGZucXpuYmphYW1sZmR4ZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ1OTM3NjUsImV4cCI6MjA4MDE2OTc2NX0.d_RFfxOBl_s7C5KWJlNNqoYv4tqUHwl7UTXm0Ozyqjs")
+          
+          if [ "$response" -eq 200 ]; then
+            echo "✅ Supabase ping successful (HTTP $response)"
+          else
+            echo "❌ Supabase ping failed (HTTP $response)"
+            exit 1
+          fi
